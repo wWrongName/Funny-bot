@@ -47,11 +47,20 @@ let TelegramBot = function (config) {
         });
     };
 
-    this.sendSticker = function (id, sticker_id, replyId) {
+    this.sendSticker = function (id, stickers, replyId) {
+        let sticker_id = stickers[Math.floor(Math.random() * stickers.length)]
         return this.telegramReq('POST', 'sendSticker', {
             chat_id : id,
             sticker : sticker_id,
             reply_to_message_id : replyId
+        });
+    };
+
+    this.sendReaction = function (id, msgId, reaction) {
+        return this.telegramReq('POST', 'sendReaction', {
+            chat_id : id,
+            msg_id : msgId,
+            reaction : ":clown:"
         });
     };
 
@@ -118,19 +127,64 @@ let TelegramBot = function (config) {
         }
     };
 
+    this.reactOnMessage = async function (message) {
+        const clownUser = "840018001"
+        const clownReaction = ":clown:"
+
+        if (message.from.id == clownUser)
+            this.sendReaction(message.chat.id, message.message_id, clownReaction)
+    }
+
+    this.rmDuplicates = function (arr) {
+        return [...new Set(arr)]
+    }
+
+    this.joinPhrases = function (inputWords) {
+        const phrases = {
+            clown : {
+                words : ["based", "oleg"]
+            }
+        }
+    
+        Object.keys(phrases).forEach(phraseName => {
+            let delIndex = []
+            let phrase = phrases[phraseName]
+            let proven = phrase.words.every(word => {
+                let res = inputWords.indexOf(word)
+                if (res === -1)
+                    return false
+                delIndex.push(res)
+                return true
+            })
+            if (proven) {
+                for (let i of delIndex)
+                    inputWords.splice(i, 1, null)
+                inputWords.push(phraseName)
+            }
+        })
+        inputWords = inputWords.filter(word => word !== null)
+        return inputWords
+    }
+
     this.figureOutAction = async function (words, message) {
         let id = message.chat.id, user = message.from    
-        let keyWord = words.splice(-1)[0]
-    
-        const model = ["haha_words", "yes"]
-        if (model.indexOf(keyWord) === -1)
-            return
+        
+        words = this.rmDuplicates(words)
+        words = this.joinPhrases(words)
 
-        if (keyWord === "haha_words")
-            this.sendSticker(id, stickers.haha_stikers[0])
-        else 
-            this.sendSticker(id, stickers.bad_words[0], message.message_id)
-        return
+        const model = ["haha_words", "yes", "clown"]
+
+        words.forEach(keyWord => {
+            if (model.indexOf(keyWord) === -1)
+                return
+
+            if (keyWord === "haha_words")
+                this.sendSticker(id, stickers.haha_stikers)
+            else if (keyWord === "clown")
+                this.sendSticker(id, stickers.base_clown)
+            else if (keyWord === "yes")
+                this.sendSticker(id, stickers.bad_words, message.message_id)
+        })
     };
 };
 
@@ -198,6 +252,7 @@ let BotClient = function (config) {
                     await this.showKeyBoard(upd.message.chat.id, 'Choose the action');
                     this.wordsLog(['/buttons'], upd.message.chat.id, upd.message.from.id, upd.message.date);
                 } else {
+                    this.reactOnMessage(upd.message);
                     this.parseMsg(upd.message);
                 }
             } catch (e) {

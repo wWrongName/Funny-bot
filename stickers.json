@@ -9,6 +9,15 @@
         "CAACAgIAAxkBAAK6e2AKAAFHQZdoMbYsazcKlxbhcRwS1AACJgMAArVx2gY-GQuL5xwZQB4E",
         "CAACAgIAAxkBAAK6fmAKAAGZO2Q5qBrWlz-FPIYTxxpJfwAC2AADVp29CokJ3b9L8RQnHgQ"
     ],
-    "bad_words": ["CAACAgIAAxkBAAEHUxBjyA6NfWq1BVVHHbLV6frXGo0egwAC-BIAAliS-UuCznWtHkGQMi0E"],
-    "haha_stikers" : ["CAACAgQAAxkBAAEHUwxjyA5c8zYCzkgaojGheIzWhvUAASgAAnAAA06gwzAc_X3UQTZYhi0E"]
+    "bad_words": [
+        "CAACAgIAAxkBAAEHUxBjyA6NfWq1BVVHHbLV6frXGo0egwAC-BIAAliS-UuCznWtHkGQMi0E"
+    ],
+    "haha_stikers": [
+        "CAACAgQAAxkBAAEHUwxjyA5c8zYCzkgaojGheIzWhvUAASgAAnAAA06gwzAc_X3UQTZYhi0E",
+        "CAACAgIAAxkBAAEHVCdjyEWCAcv3t1F6grxXOXJPb0JnPQAC3QMAAuB5UgdGIcN1K0HvwS0E",
+        "CAACAgIAAxkBAAEHVCpjyEWhxu2VIMbRYTQ8LKmdrvzhqgAC8wsAAln1IEtlWm9MyOuq9y0E"
+    ],
+    "base_clown": [
+        "CAACAgIAAxkBAAEHVDJjyEaesxw-Hih6-D0MsadsMcgSPAAC3AMAAuB5Ugf4ijzj0OsiDi0E"
+    ]
 }
