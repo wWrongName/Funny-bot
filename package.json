@@ -1,0 +1,24 @@
+{
+  "name": "funny-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wWrongName/Funny-bot.git"
+  },
+  "author": "wWrongName",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wWrongName/Funny-bot/issues"
+  },
+  "homepage": "https://github.com/wWrongName/Funny-bot#readme",
+  "dependencies": {
+    "node-fetch": "^2.6.1",
+    "yargs": "^17.6.2"
+  }
+}

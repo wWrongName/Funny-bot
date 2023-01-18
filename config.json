@@ -1,0 +1,12 @@
+{
+	"url": "https://api.telegram.org",
+	"token": "5690783653:AAEg9yXWcpsHcK_tUw_0UMtid776OlW8oRg",
+	"errBorder": 0,
+	"buttons": [
+		{
+			"text": "Кнопочька_1",
+			"callback_data": ""
+		}
+	],
+	"lastUpd": 203829427
+}
